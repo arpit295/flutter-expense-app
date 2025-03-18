@@ -349,7 +349,7 @@ class _ExpensesScreenState extends State<ExpensesScreen> {
                                   fontFamily: 'OpenSans'),
                             ),
                             subtitle: Text(
-                              DateFormat.yMMMd()
+                              DateFormat.yMMMEd()
                                   .format(transaction[index].date!),
                               style: TextStyle(
                                   color: Colors.grey,
