@@ -79,102 +79,97 @@ class _ExpensesScreenState extends State<ExpensesScreen> {
     return StatefulBuilder(
       // Add StatefulBuilder here
       builder: (BuildContext context, StateSetter setModalState) {
-        return Card(
-          color: Colors.white,
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(20))),
-          child: Container(
-            padding: EdgeInsets.all(10),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                TextField(
-                  controller: messageTextController,
-                  onChanged: (value) {
-                    messageText = value;
-                  },
-                  decoration: InputDecoration(labelText: 'Title'),
-                ),
-                TextField(
-                  controller: amountTextController,
-                  keyboardType: TextInputType.number,
-                  onChanged: (value) {
-                    amountText = value;
-                  },
-                  decoration: InputDecoration(labelText: 'Amount'),
-                ),
-                SizedBox(height: 10),
-                Row(
-                  children: [
-                    Expanded(
-                      child: Text(
-                        selectedDate == null
-                            ? 'No Date Chosen!'
-                            : 'Picked Date : ${DateFormat.yMMMEd().format(selectedDate!)}',
-                        style: TextStyle(
-                            color: Colors.black, fontFamily: 'OpenSans'),
-                      ),
+        return Container(
+          padding: EdgeInsets.all(15),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              TextField(
+                controller: messageTextController,
+                onChanged: (value) {
+                  messageText = value;
+                },
+                decoration: InputDecoration(labelText: 'Title'),
+              ),
+              TextField(
+                controller: amountTextController,
+                keyboardType: TextInputType.number,
+                onChanged: (value) {
+                  amountText = value;
+                },
+                decoration: InputDecoration(labelText: 'Amount'),
+              ),
+              SizedBox(height: 10),
+              Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      selectedDate == null
+                          ? 'No Date Chosen!'
+                          : 'Picked Date : ${DateFormat.yMMMEd().format(selectedDate!)}',
+                      style: TextStyle(
+                          color: Colors.black, fontFamily: 'OpenSans'),
                     ),
-                    TextButton(
-                      onPressed: () {
-                        presentDatePicker(setModalState);
-                      },
-                      child: Text(
-                        'Choose Date',
-                        style: TextStyle(
-                            color: Colors.purple,
-                            fontFamily: 'OpenSans',
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 15),
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.purple,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.zero)),
-                  onPressed: () {
-                    setState(() {
-                      if (messageText.isNotEmpty &&
-                          amountText.isNotEmpty &&
-                          selectedDate != null) {
-                        final double? amount = double.tryParse(amountText);
-
-                        if (amount != null && amount > 0) {
-                          transaction.add(Transaction(
-                              name: messageText,
-                              amount: amount,
-                              date: selectedDate));
-
-                          messageTextController.clear();
-                          amountTextController.clear();
-                          messageText = '';
-                          amountText = '';
-                          selectedDate = null;
-
-                          saveTasks();
-                        } else {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text('Please enter a valid amount!'),
-                              backgroundColor: Colors.red,
-                            ),
-                          );
-                        }
-                        Navigator.pop(context);
-                      }
-                    });
-                  },
-                  child: Text(
-                    'Add Transaction',
-                    style:
-                        TextStyle(color: Colors.white, fontFamily: 'QuickSand'),
                   ),
-                )
-              ],
-            ),
+                  TextButton(
+                    onPressed: () {
+                      presentDatePicker(setModalState);
+                    },
+                    child: Text(
+                      'Choose Date',
+                      style: TextStyle(
+                          color: Colors.purple,
+                          fontFamily: 'OpenSans',
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: 15),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.purple,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.zero)),
+                onPressed: () {
+                  setState(() {
+                    if (messageText.isNotEmpty &&
+                        amountText.isNotEmpty &&
+                        selectedDate != null) {
+                      final double? amount = double.tryParse(amountText);
+
+                      if (amount != null && amount > 0) {
+                        transaction.add(Transaction(
+                            name: messageText,
+                            amount: amount,
+                            date: selectedDate));
+
+                        messageTextController.clear();
+                        amountTextController.clear();
+                        messageText = '';
+                        amountText = '';
+                        selectedDate = null;
+
+                        saveTasks();
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text('Please enter a valid amount!'),
+                            backgroundColor: Colors.red,
+                          ),
+                        );
+                      }
+                      Navigator.pop(context);
+                    }
+                  });
+                },
+                child: Text(
+                  'Add Transaction',
+                  style:
+                      TextStyle(color: Colors.white, fontFamily: 'QuickSand'),
+                ),
+              )
+            ],
           ),
         );
       },
@@ -222,10 +217,10 @@ class _ExpensesScreenState extends State<ExpensesScreen> {
                 color: Colors.white,
               ))
         ],
-        titleTextStyle: TextStyle(color: Colors.white, fontSize: 20),
         title: Text(
           'Personal Expenses',
           style: TextStyle(
+              color: Colors.white,
               fontFamily: 'OpenSans',
               fontWeight: FontWeight.bold,
               fontSize: 20),
