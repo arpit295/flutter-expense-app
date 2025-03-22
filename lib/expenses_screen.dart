@@ -230,7 +230,7 @@ class _ExpensesScreenState extends State<ExpensesScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Chart(recentTransaction: recentTransaction),
+            Chart(myTransaction: recentTransaction),
             Expanded(
               child: transaction.isEmpty
                   ? Column(
