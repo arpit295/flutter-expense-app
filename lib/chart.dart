@@ -39,8 +39,8 @@ class Chart extends StatelessWidget {
       color: Colors.white,
       elevation: 6,
       margin: EdgeInsets.all(20),
-      child: Container(
-        padding: EdgeInsets.all(10),
+      child: Padding(
+        padding: EdgeInsets.all(10.0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: groupedTransactionValue.map((data) {
